@@ -77,8 +77,21 @@
     <input type="email" name="email" placeholder="你的邮箱 · Your email" required>
     <button type="submit">订阅 · Subscribe</button>
   </form>
+  <p id="gh-note" style="display:none; margin-top: 14px; font-size: 14px;">这个页面是 GitHub 版，订阅请到 Netlify 链接，正在为你跳转。</p>
 
   <p class="foot">Meimei the Maltipoo · <a href="https://www.instagram.com/meimeithenewyawker">@meimeithenewyawker</a></p>
 </div>
+<script>
+(function () {
+  if (location.hostname.indexOf('github.io') === -1) return;
+  var note = document.getElementById('gh-note');
+  if (note) note.style.display = 'block';
+  var form = document.querySelector('form[name="book-updates"]');
+  if (form) form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    location.href = 'https://meimei-picture-books.netlify.app/';
+  });
+})();
+</script>
 </body>
 </html>
