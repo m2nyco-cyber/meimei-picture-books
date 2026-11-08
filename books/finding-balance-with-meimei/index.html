@@ -140,7 +140,9 @@
   body[data-lang="en"] h2.page-title .en{font-size:1em; color:var(--ink); margin-top:0}
   .cover-sub{font-size:1.02rem; line-height:1.8; color:var(--ink-soft); margin:0}
   .cover-meta{display:flex; gap:8px; flex-wrap:wrap}
-  .cover-meta span{font-size:.8rem; font-weight:700; background:var(--surface-soft); border:1px solid var(--line); padding:6px 12px; border-radius:999px; color:var(--ink-soft)}
+  .cover-meta>span{font-size:.8rem; font-weight:700; background:var(--surface-soft); border:1px solid var(--line); padding:6px 12px; border-radius:999px; color:var(--ink-soft)}
+  .cover-meta .age-pill{display:flex; flex-direction:column; gap:1px; align-items:center; text-align:center; line-height:1.55}
+  .cover-meta .age-pill .pill-en{font-size:.72rem; font-weight:600; opacity:.85}
   .start-btn{
     align-self:flex-start; margin-top:4px; border:0; cursor:pointer; font:inherit; font-weight:800; font-size:1rem;
     background:var(--pink); color:#fff; padding:13px 26px; border-radius:999px; box-shadow:var(--btn-shadow);
@@ -154,6 +156,18 @@
   }
   .listen-btn:active{transform:scale(.97)}
   .listen-btn.playing{background:var(--pink); color:#fff; border-color:var(--pink)}
+
+  /* phone, tablet and desktop */
+  @media (max-width:600px){
+    .stage{padding:12px 12px 8px}
+    .cover-meta .age-pill{flex:1 1 100%}
+    .cover-actions .start-btn, .cover-actions .listen-btn{flex:1 1 100%; justify-content:center; text-align:center}
+    .body-copy{padding:22px 18px 26px}
+    .cover-sub{font-size:.98rem}
+  }
+  @media (min-width:601px) and (max-width:839px){
+    .body-copy{padding:32px 32px}
+  }
 
   /* balance meter */
   .meter{display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:var(--surface-soft); border:1px solid var(--line); border-radius:16px; padding:12px 14px}
@@ -281,7 +295,7 @@
         <h1 class="book-title zh-display">小美找到平衡<span class="en en-display">Meimei Finds Her Balance</span></h1>
         <p class="cover-sub zh-line">照顾好自己，身体、心和心灵，光就会从里面亮出来。</p>
         <p class="cover-sub en-line">Take care of your body, your mind, and your heart, and your light will shine from the inside out.</p>
-        <div class="cover-meta"><span>中英双语 Bilingual</span><span>主题 Theme：平衡 Balance</span><span>3 到 6 岁 · 任何年龄都爱看 Ages 3 to 6, loved at any age</span></div>
+        <div class="cover-meta"><span>中英双语 Bilingual</span><span>主题 Theme：平衡 Balance</span><span class="age-pill"><span>3 到 6 岁 · 任何年龄都爱看</span><span class="pill-en">Ages 3 to 6, loved at any age</span></span></div>
         <div class="cover-actions">
           <button class="start-btn" type="button" data-goto="1">开始读故事 · Start Reading →</button>
           <button class="listen-btn" type="button" id="coverListenBtn" aria-pressed="false">🔊 听我读 · Listen in Chinese</button>
