@@ -146,6 +146,14 @@
     background:var(--pink); color:#fff; padding:13px 26px; border-radius:999px; box-shadow:var(--btn-shadow);
   }
   .start-btn:active{transform:scale(.97)}
+  .cover-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+  .cover-actions .start-btn{margin-top:0}
+  .listen-btn{
+    border:1.5px solid var(--pink); background:var(--pink-soft); color:var(--pink-deep); font:inherit; font-weight:800; font-size:1rem;
+    padding:13px 22px; border-radius:999px; cursor:pointer; box-shadow:var(--btn-shadow);
+  }
+  .listen-btn:active{transform:scale(.97)}
+  .listen-btn.playing{background:var(--pink); color:#fff; border-color:var(--pink)}
 
   /* balance meter */
   .meter{display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:var(--surface-soft); border:1px solid var(--line); border-radius:16px; padding:12px 14px}
@@ -274,7 +282,10 @@
         <p class="cover-sub zh-line">照顾好自己，身体、心和心灵，光就会从里面亮出来。</p>
         <p class="cover-sub en-line">Take care of your body, your mind, and your heart, and your light will shine from the inside out.</p>
         <div class="cover-meta"><span>中英双语 Bilingual</span><span>主题 Theme：平衡 Balance</span><span>3 到 6 岁 · 任何年龄都爱看 Ages 3 to 6, loved at any age</span></div>
-        <button class="start-btn" type="button" data-goto="1">开始读故事 · Start Reading →</button>
+        <div class="cover-actions">
+          <button class="start-btn" type="button" data-goto="1">开始读故事 · Start Reading →</button>
+          <button class="listen-btn" type="button" id="coverListenBtn" aria-pressed="false">🔊 听我读 · 中文朗读</button>
+        </div>
       </div>
     </div>
   </section>
@@ -487,12 +498,35 @@
     countEl.textContent = '第 ' + (current+1) + ' / ' + pages.length + ' 页 · ' + zh + ' · Page ' + (current+1) + ' of ' + pages.length + ' · ' + en;
     fillEl.style.width = ((current+1) / pages.length * 100) + '%';
     stopBreathing();
+    stopCoverAudio();
   }
   function goTo(i){
     current = Math.max(0, Math.min(pages.length - 1, i));
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  /* read aloud: cover narration in Chinese, recorded by Tian */
+  var coverAudio = new Audio('audio/cover_cn.m4a');
+  var coverBtn = document.getElementById('coverListenBtn');
+  function stopCoverAudio(){
+    if (coverAudio && !coverAudio.paused) coverAudio.pause();
+    if (coverAudio) coverAudio.currentTime = 0;
+    if (coverBtn){ coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读'; }
+  }
+  coverBtn.addEventListener('click', function(){
+    if (coverAudio.paused){
+      coverAudio.play();
+      coverBtn.classList.add('playing'); coverBtn.setAttribute('aria-pressed', 'true'); coverBtn.textContent = '⏸ 暂停';
+    } else {
+      coverAudio.pause();
+      coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读';
+    }
+  });
+  coverAudio.addEventListener('ended', function(){
+    coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读';
+    goTo(1);
+  });
   prevBtn.addEventListener('click', function(){ goTo(current - 1); });
   nextBtn.addEventListener('click', function(){ goTo(current + 1); });
   document.querySelectorAll('[data-goto]').forEach(function(b){
