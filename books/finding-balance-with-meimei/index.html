@@ -284,7 +284,7 @@
         <div class="cover-meta"><span>中英双语 Bilingual</span><span>主题 Theme：平衡 Balance</span><span>3 到 6 岁 · 任何年龄都爱看 Ages 3 to 6, loved at any age</span></div>
         <div class="cover-actions">
           <button class="start-btn" type="button" data-goto="1">开始读故事 · Start Reading →</button>
-          <button class="listen-btn" type="button" id="coverListenBtn" aria-pressed="false">🔊 听我读 · 中文朗读</button>
+          <button class="listen-btn" type="button" id="coverListenBtn" aria-pressed="false">🔊 听我读 · Listen in Chinese</button>
         </div>
       </div>
     </div>
@@ -512,19 +512,19 @@
   function stopCoverAudio(){
     if (coverAudio && !coverAudio.paused) coverAudio.pause();
     if (coverAudio) coverAudio.currentTime = 0;
-    if (coverBtn){ coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读'; }
+    if (coverBtn){ coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · Listen in Chinese'; }
   }
   coverBtn.addEventListener('click', function(){
     if (coverAudio.paused){
       coverAudio.play();
-      coverBtn.classList.add('playing'); coverBtn.setAttribute('aria-pressed', 'true'); coverBtn.textContent = '⏸ 暂停';
+      coverBtn.classList.add('playing'); coverBtn.setAttribute('aria-pressed', 'true'); coverBtn.textContent = '⏸ 暂停 · Pause';
     } else {
       coverAudio.pause();
-      coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读';
+      coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · Listen in Chinese';
     }
   });
   coverAudio.addEventListener('ended', function(){
-    coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · 中文朗读';
+    coverBtn.classList.remove('playing'); coverBtn.setAttribute('aria-pressed', 'false'); coverBtn.textContent = '🔊 听我读 · Listen in Chinese';
     goTo(1);
   });
   prevBtn.addEventListener('click', function(){ goTo(current - 1); });
