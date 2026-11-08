@@ -32,6 +32,7 @@
   .b2b p.intro { font-size: 15px; line-height: 1.7; margin: 0 0 16px; }
   .b2b ul { margin: 0 0 20px; padding-left: 20px; font-size: 15px; line-height: 1.7; }
   .b2b ul small { display: block; font-size: 13px; color: #a98f8f; }
+  .b2b .free { background: #fdf6ec; border: 1px solid #e8d9c8; border-radius: 16px; padding: 14px 16px; text-align: center; font-size: 15px; line-height: 1.7; margin: 0 0 20px; }
   .b2b form { margin-top: 0; box-shadow: none; padding: 0; }
   .b2b label { display: block; text-align: left; font-size: 14px; margin: 12px 0 5px; color: #5b4a4a; }
   .b2b input[type="text"], .b2b input[type="email"], .b2b select, .b2b textarea { width: 100%; font-size: 15px; padding: 12px 16px; border: 1px solid #e5c9c9; border-radius: 14px; font-family: inherit; color: #5b4a4a; background: #fff; }
@@ -77,6 +78,7 @@
       <li>China market entry consulting · 中国市场进入咨询<small>For US boutique brands and individuals entering China: brand strategy, market research, market entry plan, and social media strategy for China platforms.</small></li>
       <li>Other · 其他需求<small>Tell me what you need. If I can help, I will reply with next steps.</small></li>
     </ul>
+    <p class="free"><strong>Free first step · 免费第一步</strong><br>A free 30 minute intro call to diagnose your goal and decide if we can work together. Pricing comes after that call.<br>免费 30 分钟初步沟通，诊断你的目标，判断是否适合合作，之后再谈定价。</p>
     <form name="b2b-inquiry" method="POST" data-netlify="true">
       <h3 style="text-align:center;">Send an inquiry · 发送需求</h3>
       <p style="text-align:center;">Tell me what you are looking for. I will reply within 2 business days.</p>
@@ -108,6 +110,8 @@
       <input type="text" name="target_quantity">
       <label>Target price or budget · 目标价或预算</label>
       <input type="text" name="target_price_budget">
+      <label>Preferred time for a free 30 minute intro call · 方便通话时间</label>
+      <input type="text" name="preferred_call_time" placeholder="Your timezone and a few time options">
       <label>Timeline · 时间</label>
       <input type="text" name="timeline">
       <label>Message · 留言</label>
